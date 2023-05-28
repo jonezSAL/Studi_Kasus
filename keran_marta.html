@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hitung Total Harga</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+      padding-top: 50px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table {
+      margin-bottom: 20px;
+    }
+
+    .total-harga {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <table class="table">
+      <tr>
+        <td>
+          <a id="menu_id">Martabak Manis</a>
+        </td>
+        <td>
+          <a id="harga">Rp 55.000</a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <a id="kirim">
+          Ongkos Kirim
+        </td>
+        <td><a id="ongkos">
+          Rp 13,000
+        </td>
+      </tr>
+    </table>
+ <form method="post" action="proses.php">
+  <input type="hidden" name="menu_id" value="Martabak Manis">
+  <input type="hidden" name="harga" value="55000">
+  <input type="hidden" name="ongkos" value="13000">
+  <textarea name="alamat" placeholder="Isikan Alamat"></textarea>
+  <button type="submit" class="btn btn-primary">Simpan</button>
+</form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Mendapatkan elemen-elemen dengan ID yang diperlukan
+    var hargaElement = document.querySelector('[name="harga"]');
+    var ongkosKirimElement = document.querySelector('[name="ongkos"]');
+
+    // Mendapatkan nilai harga dan ongkos kirim
+    var harga = parseFloat(hargaElement.value);
+    var ongkosKirim = parseFloat(ongkosKirimElement.value);
+
+    // Menghitung total harga
+    var total = harga + ongkosKirim;
+
+    // Menampilkan total harga
+    var totalHargaElement = document.createElement('p');
+    totalHargaElement.className = 'total-harga';
+    totalHargaElement.textContent = 'Total Harga: Rp ' + total;
+
+    var containerElement = document.querySelector('.container');
+    containerElement.appendChild(totalHargaElement);
+  });
+</script>
+
+
+  <!-- Include Bootstrap JS -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
